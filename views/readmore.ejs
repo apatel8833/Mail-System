@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>readmore</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="top">
+            <div class="left" id="left">
+                <!-- <h1><i>SheryMail</i></h1> -->
+                <div id="head">
+                    <h1>Hello <Span id="username">
+                            <%= foundUser.username %>
+                        </Span> ,</h1>
+                    <p>Welcome to <span style="color: yellow ;">SheryMail</span></p>
+                </div>
+                <img src="/images/mail car.png" alt="">
+            </div>
+
+            <div class="right" style="background-color: #ccc; position: relative;" id="right">
+                <a href="/logout"><button
+                        style="width: 5vw ; height: 3vh; font-size: 2vh;position: absolute; right: 2%; top: 50%; transform: translate(0% , -50%); ">Logout</button></a>
+                <div id="circle"
+                    style="width: 60px ; height: 60px ; border-radius: 50%; background-color: yellow; position: absolute;overflow: hidden; right: 15%; top: 50%; transform: translate(0% , -50%);">
+                    <img style="width: 100%; height: 100%; object-fit: cover;"
+                        src=" ./images/uploads/<%= foundUser.profilePic %>" alt="">
+                </div>
+                <form id="photuform" action="/fileimage" method="post" enctype="multipart/form-data"
+                    style="display: none;">
+                    <input type="file" name="image" id="choose">
+                    <input type="submit" name="" id="submit">
+                </form>
+            </div>
+        </div>
+        <div id="bottom">
+            <div class="left"
+                style="font-family: Gilroy  ; font-weight: lighter; color: rgb(240, 229, 229); background-color: #262626;"
+                id="left">
+                <ul>
+
+                    <li>
+                        <div id="button"> <button><i class="ri-add-circle-fill"></i> Create Mail</button></div>
+                    </li>
+                    <a href="/profile">
+                        <li id="list">
+                            <div id="items">
+                                <i class="ri-mail-open-line"></i>
+                                <h3>Inbox</h3>
+                            </div>
+                        </li>
+                    </a>
+                    <li id="list">
+                        <div id="items">
+                            <i class="ri-star-line"></i>
+                            <h3>Marked</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items">
+                            <i class="ri-group-line"></i>
+                            <h3>Group</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items">
+                            <i class="ri-draft-line"></i>
+                            <h3>Draft</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items" style="background-color: rgb(204 204 204) ; color: black;">
+                            <i class="ri-send-plane-line"></i>
+                            <h3>Send</h3>
+                        </div>
+                    </li>
+
+                    <li id="list">
+                        <div id="items">
+                            <i class="ri-delete-bin-6-line"></i>
+                            <h3>Deleted</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items">
+                            <i class="ri-spam-3-line"></i>
+                            <h3>Spam</h3>
+                        </div>
+                    </li>
+                </ul>
+                <br>
+                <br>
+                <div id="label">
+                    <h3>LABELS</h3>
+                    <div id="icons">
+                        <i class="ri-pencil-line"></i>
+                        <i class="ri-add-line"></i>
+                    </div>
+                </div>
+                <br>
+                <ul>
+                    <li id="list">
+                        <div id="items">
+                            <i style="color: red ;" class="ri-edit-circle-fill"></i>
+                            <h3>Personal</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items">
+                            <i style="color: yellow;" class="ri-edit-circle-fill"></i>
+                            <h3>Family</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items">
+                            <i style="color: blue ;" class="ri-edit-circle-fill"></i>
+                            <h3>Friends</h3>
+                        </div>
+                    </li>
+                    <li id="list">
+                        <div id="items">
+                            <i style="color: purple ;" class="ri-edit-circle-fill"></i>
+                            <h3>Work</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="center" id="center">
+                <br>
+
+                <ul>
+                    <li>
+
+                        <% foundUser.sentMails.forEach(function(elem){ %>
+                            <a href="/readmore/<%= elem._id %>">
+                                <div id="mails">
+                                    <h3 style="text-transform: lowercase;">
+                                        <%= elem.receiver%>
+                                    </h3>
+    
+                                    <p>
+                                        <%= elem.mailtext %>
+                                    </p>
+                                </div>
+                            </a>
+                            <%})%>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="right" id="right">
+                <div id="mailbox">
+                    <div id="box">
+                        <div id="minbox"><i class="ri-subtract-line"></i></div>
+                        <div id="maxbox"><i class="ri-checkbox-multiple-blank-line"></i></div>
+                        <div id="closebox"> <i class="ri-close-line"></i></div>
+                    </div>
+                    <form action="/compose" method="post">
+                        <input autocomplete="off" id="recievedEmail" name="receivemail" type="email"
+                            placeholder="Write Sender's mail address" name="" id="">
+                        <textarea autocomplete="off" id="mailtext" name="mailtext" placeholder="Message" name="" id=""
+                            cols="30" rows="10"></textarea>
+                        <input type="submit" name="" id="">
+                    </form>
+                </div>
+
+                <%= maildetails.receiver%>
+                <%= maildetails.mailtext%>
+                
+            </div>
+        </div>
+    </div>
+</body>|
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+    integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/profile.js"></script>
+<script>
+    document.querySelector("#circle").addEventListener("click", function () {
+        document.querySelector("#choose").click();
+    })
+    document.querySelector("#choose").addEventListener("change", function () {
+        document.querySelector("#submit").click();
+    })
+
+
+
+
+
+
+
+</script>
+
+</html>

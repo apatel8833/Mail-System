@@ -1,0 +1,300 @@
+*
+{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+html , body 
+{
+    
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+}
+#top .left img
+{
+    width: 9vw;
+    top: 30%;
+    z-index: 99;
+    right: -7%;
+    position: absolute;
+}
+#main
+{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    /* background-color: red; */
+}
+
+#top
+{
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    /* background-color: yellow; */
+    border-bottom: 0.5px rgb(78, 75, 75) solid;
+}
+
+#bottom
+{
+    display: flex;
+    width: 100vw;
+    height: 90vh;
+    /* background-color: blue; */
+}
+#top .left
+{
+    border-left: 0.5px grey solid;
+    height: 100%;
+    width: 50vw;
+    position: relative;
+    /* background-color: aqua; */
+}
+#username
+{
+    color: white;
+    -webkit-text-stroke-color: #524f4f transparent ;
+}
+#head
+{
+    background-color: red;
+    width: 100%;
+    display: flex;
+/* position: relative; */
+}
+#head p
+{
+    /* margin-left: 12vw; */
+    /* position: absolute; */
+    padding-top: 6%;
+    font-size: 2vw;
+    font-family: Gilroy;
+}
+.left
+{
+    border-left: 0.5px grey solid;
+    height: 100%;
+    width: 20vw;
+    position: relative;
+    /* background-color: aqua; */
+}
+.center
+{
+    border-left: 0.5px grey solid;
+    height: 100%;
+    background-color: #ccc;
+    width: 30vw;
+}
+.right
+{
+    border-left: 0.5px grey solid;
+    height: 100%;
+    /* background-color: wheat; */
+    width: 50vw;
+}
+
+#top .left
+{
+    position: relative;
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#items
+{
+    height: 5vh;
+}
+
+#top .left h1
+{
+    font-size: 3vw;
+
+    font-family: Gilroy;
+}
+#bottom .left 
+{
+    position: relative;
+}
+ #list:hover
+{
+
+    border-left: red solid 0.2vw;
+    background-color: #524f4f;
+    
+}
+#list
+{
+    border-bottom : #ccc solid 0.001rem;
+}
+
+#bottom .left ul li div
+{
+    /* height: 5vh; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw 1vw;
+
+}
+/* #bottom .left button
+{
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+} */
+#button
+{
+    position: relative;
+    height: 12vh;
+}
+#button button
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 3vw;
+    width: 10vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    border-radius: 10px; 
+    font-family: Gilroy ;
+    font-size: 1.1vw;
+}
+#button i 
+{
+    font-size: 3vw;
+}
+
+button:hover
+{
+    color: white;
+    background-color: blue;
+}
+
+#label
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  0vw 1vw;
+    /* background-color: blue; */
+}
+#icons
+{
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    display: flex;
+
+}
+
+#mailbox
+{
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) ease-in-out;
+    width: 22vw;
+    position: absolute;
+    bottom: -55vh;
+    right: 0%;
+    height: 55vh;
+    background-color: #ccc;
+}
+
+#recievedEmail
+{
+
+    border-radius: 5px;
+    width: 90%;
+    height:5vh;
+    margin-top: 10%;
+    margin-left: 5%;
+
+}
+
+#mailtext
+{
+    resize: none;
+    border-radius: 5px;
+    width: 90%;
+    height:39vh;
+
+    margin-top: 5%;
+    margin-left: 5%;
+}
+#closebox ,  #minbox ,  #maxbox
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2vw;
+    height: 3vh;
+    /* background-color: blue; */
+    background-color: rgb(244, 240, 240);
+    /* position: absolute; */
+    /* margin-right: 70%; */
+
+}
+#close
+{
+    font-size: 3vh;
+    /* color: red; */
+}
+#closebox:hover
+{
+    color: white;
+    background-color: red;
+}
+
+#minbox:hover
+{
+    color: white;
+    background-color: rgb(70, 69, 69);
+}
+
+#maxbox:hover
+{
+    color: white;
+    background-color: rgb(70, 69, 69);
+}
+
+
+#box
+{
+    display: flex;
+    /* position: relative; */
+    /* background-color: blue; */
+    position: absolute;
+    right: 0%;
+    width: 7vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#mails
+{
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;
+    width: 100%;
+    height: 10vh;
+    /* background-color: blue; */
+}
+
+#mails p{
+    font-size: 1vw;
+}
+
+#mails h3
+{
+    font-family: Gilroy;
+    text-transform: capitalize;
+}

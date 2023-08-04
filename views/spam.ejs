@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="/stylesheets/aa.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="left">
+            <div class="sidebar">
+                <div class="wrapper">
+                    <div class="menu">
+                        <img src="https://i.ibb.co/B4Dn7CT/menu.png" />
+                    </div>
+                    <div class="items">
+                        <img src="https://i.ibb.co/L8D5T60/light.png" />
+                        <img src="https://i.ibb.co/zmDbMVZ/diamond.png" />
+                        <img src="https://i.ibb.co/W5QZ9Fk/envelope.png" />
+                        <img src="https://i.ibb.co/CnKDBxC/flask.png" />
+                        <img src="https://i.ibb.co/MGs4Fyn/sent-mail.png" />
+                        <img src="https://i.ibb.co/zGtDpcp/map.png" />
+                    </div>
+                    <div class="profile">
+                        <img
+                            src="https://www.seekclipart.com/clipng/middle/103-1032140_graphic-transparent-1-vector-flat-small-user-icon.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="navigation">
+                <div class="wrapper2">
+                    <div class="abilan">
+                        <img src="https://i.ibb.co/HgJrt1p/abilan.png" />
+                    </div>
+                    <button id="composeButton" class="compose">Compose Mail
+                        <span class="plus">
+                            <img src="https://i.ibb.co/v1HxGWj/add-1.png" /></span></button>
+                    <div class="folders">Folders</div>
+                    <a href="/profile">
+                        <div class="folder-icons">
+                            <div class="icon1">
+                                <img src="https://i.ibb.co/qdgf3TJ/envelope.png" />
+                            </div>
+                            <div class="icon-name">Inbox
+    
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/sent">
+                        <div class="folder-icons">
+                            <div class="icon1">
+                                <img src="https://i.ibb.co/2yLfX9W/sent-mail.png" />
+                            </div>
+                            <div class="icon-name">Send Mail</div>
+                        </div>
+                    </a>
+                    <a href="/imp">
+                        <div class="folder-icons">
+                            <div class="icon1">
+                                <img src="https://i.ibb.co/6ZH9kK3/star.png" />
+                            </div>
+                            <div class="icon-name">Important</div>
+                        </div>
+                    </a>
+                    <!-- <div class="folder-icons">
+                        <div class="icon1">
+                            <img src="https://i.ibb.co/z4QhcbD/email.png" />
+                        </div>
+                        <div class="icon-name">Draft</div>
+                    </div> -->
+                    <a href="/spam">
+                        <div class="folder-icons">
+                            <div class="icon1">
+                                <img src="https://i.ibb.co/3MzfGDF/bug.png" />
+                            </div>
+                            <div class="icon-name">Spam</div>
+                        </div>
+                    </a>
+                    <a href="/trash">
+                        <div class="folder-icons">
+                            <div class="icon1">
+                                <img src="https://i.ibb.co/xfcFLCN/waste-bin.png" />
+                            </div>
+                            <div class="icon-name1">Trash</div>
+                        </div>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="right-header">
+                <div class="top-bar">
+                    <div class="top-bar-justify">
+                        <div class="big-inbox">
+                            Spam
+                        </div>
+
+
+                        <div class="profile2">
+
+                            <div id="circle">
+                                <img src=" ./images/uploads/<%= foundUser.profilePic %>" alt="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="new-hr">
+
+
+
+                </div>
+                <div id="box">
+                    <ul type="none">
+                        <li>
+                            <div id="circle" class="circle">
+                                <img src=" ./images/uploads/<%= foundUser.profilePic %>" />
+                            </div>
+                            <form id="photuform" action="/fileimage" method="post" enctype="multipart/form-data"
+                                style="display: none;">
+                                <input type="file" name="image" id="choose">
+                                <input type="submit" name="" id="submit">
+                            </form>
+                        </li>
+                        <li>
+                            <h3>
+                                <%= foundUser.username %>
+                            </h3>
+                        </li>
+                        <li>
+                            <h6>
+                                <%= foundUser.email %>
+                            </h6>
+                        </li>
+                        <li>
+                            <a href="/logout"><button class=".btn">Logout</button></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-body">
+                    <div class="scroll-cards" style="width: 100%;">
+                        <% foundUser.receivedMails.forEach(function(elem){ %>
+                            <% if(elem.spam){%>
+                            <a href="profile/inbox/<%= elem.id %>">
+                                <div class="card">
+                                    <div class="mails">
+                                        <img src=" ./images/uploads/<%= elem.userid.profilePic %>" />
+                                        <div class="mail-names">
+                                            <%= elem.userid.username %>
+                                        </div>
+
+                                    </div>
+                                    <div class="mail-info">
+                                        <% if(elem.mailtext.length> 20) { %>
+                                            <%= elem.mailtext.substring(0 , 40)%> .......
+                                                <% }else{ %>
+                                                    <%= elem.mailtext%>
+                                                        <%}%>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="bottom-info">
+                                        <div class="check1">
+                                            <div class="star">
+                                                <a href="/imp/<%= elem._id %>" >
+                                                    <i class="ri-star-line"></i>
+                                               </a>
+                                            </div>
+                                            <div class="star">
+                                            <a href="/trash/<%= elem._id %>" >
+                                                    <i class="ri-delete-bin-5-line"></i>
+                                                </a>
+                                                </div>
+                                                <div class="star">
+                                                    <a href="/spam/<%= elem._id%>">
+                                                     <i  class="ri-spam-3-fill"></i>
+                                                    </a>
+                                                 </div>
+
+                                        </div>
+                                        <div class="date">
+                                            <%=elem.date%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <% } %>
+                            <%}) %>
+
+
+                    </div>
+                    <div id="compose">
+                        <div id="compose-nav">
+                            <div id="compose-nav-right"
+                                style="display: flex; justify-content: flex-end; padding:0 20px;">
+                                <div id="minbox" style="padding: 5px 10px;"><i class="ri-subtract-line"></i></div>
+                                <div id="maxbox" style="padding: 5px 10px;"><i
+                                        class="ri-checkbox-multiple-blank-line"></i></div>
+                                <div id="closebox" style="padding: 5px 10px;"> <i class="ri-close-line"></i></div>
+                            </div>
+                        </div>
+                        <div id="compose">
+                            <div id="compose-nav">
+                                <div id="compose-nav-right"
+                                    style="display: flex; justify-content: flex-end; padding:0 20px;">
+                                    <div id="minbox" style="padding: 5px 10px;"><i class="ri-subtract-line"></i></div>
+                                    <div id="maxbox" style="padding: 5px 10px;"><i
+                                            class="ri-checkbox-multiple-blank-line"></i></div>
+                                    <div id="closebox" style="padding: 5px 10px;"> <i class="ri-close-line"></i></div>
+                                </div>
+                            </div>
+                            <form action="/compose" method="post">
+    
+                                <input autocomplete="off" id="recievedEmail" name="receivemail" type="email"
+                                    placeholder="Write Sender's mail address" required>
+                                <label style="position: absolute;right: 2%; bottom : 57.5vh; font-size: 10px; font-family: monospace;" for="recievedEmail" id="email-label"></label>    
+                                <!-- <p id="email-label"></p> -->
+                                <input autocomplete="off" id="subject" name="subject" type="text" placeholder="Subject" required>
+                                <textarea autocomplete="off" id="mailtext" name="mailtext" placeholder="Message" name=""
+                                    id="" cols="30" rows="10" required></textarea>
+                                <input type="submit" id="registeration-button" style="width: 50%; margin-left: 25%;" class="btn btn-primary btn-lg"
+                                    value="Send">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+
+
+document.querySelector("#recievedEmail").addEventListener("input" , function () {
+      var email = document.querySelector("#recievedEmail").value.trim();
+      console.log(email)
+      axios.get(`/checkmail/${email}`)
+        .then(function (data) {
+          if (data.data.user) {
+            console.log("user found");
+            document.querySelector("#recievedEmail").style.border = '2px green solid';
+            document.querySelector("#registeration-button").disabled = false;
+            document.querySelector("#registeration-button").style.backgroundColor = "#ecc0bf";
+            document.querySelector("#registeration-button").style.backgroundColor = "#e8716d";
+
+            document.querySelector("#registeration-button").style.cursor = "pointer";
+
+            document.querySelector("#email-label").textContent = "";
+            
+
+
+          }
+          else{
+            document.querySelector("#recievedEmail").style.border = '3px red solid';
+            document.querySelector("#registeration-button").disabled = true;
+            document.querySelector("#registeration-button").style.backgroundColor = "#ecc0bf";
+            document.querySelector("#registeration-button").style.cursor = "no-drop";
+
+            document.querySelector("#email-label").textContent = "Does'nt Exist";
+            document.querySelector("#email-label").style.color = "red";
+
+
+          }
+          console.log("user not found")
+        })
+
+    })
+
+
+
+
+
+
+                var flag = 0
+                document.querySelector(".profile2").addEventListener("click", function () {
+
+                    if (flag === 0) {
+                        document.querySelector("#box").style.right = "0%"
+                        flag++;
+                    }
+                    else if (flag === 1) {
+                        document.querySelector("#box").style.right = "-30%";
+                        flag--;
+                    }
+                })
+                document.querySelector("#composeButton").addEventListener("click", function () {
+                    document.querySelector("#compose").style.right = "1%";
+                    document.querySelector("#compose").style.bottom = "0vh";
+                })
+                document.querySelector("#closebox").addEventListener("click", function () {
+                    document.querySelector("#compose").style.right = "-40%"
+                })
+                document.querySelector("#minbox").addEventListener("click", function () {
+                    document.querySelector("#compose").style.bottom = "-65vh"
+                })
+                document.querySelector("#maxbox").addEventListener("click", function () {
+                    document.querySelector("#compose").style.bottom = "0vh"
+                })
+                document.querySelector(".circle").addEventListener("click", function () {
+                    document.querySelector("#choose").click();
+                })
+                document.querySelector("#choose").addEventListener("change", function () {
+                    document.querySelector("#submit").click();
+                })
+
+            </script>
+</body>
+
+</html>

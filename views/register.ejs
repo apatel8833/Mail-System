@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+  </head>
+
+  <body>
+    <section class="user">
+      <div class="user_options-container">
+        <div class="user_options-text">
+          <div class="user_options-registered">
+            <h2 class="user_registered-title">Have an account?</h2>
+            <p class="user_registered-text">
+              Banjo tote bag bicycle rights, High Life sartorial cray craft beer
+              whatever street art fap.
+            </p>
+            <button class="user_unregistered-signup" id="signup-button">
+                Login
+              </button>
+          
+          </div>
+          <div class="user_options-unregistered">
+            <h2 class="user_unregistered-title">Don't have an account?</h2>
+            <p class="user_unregistered-text">
+              Banjo tote bag bicycle rights, High Life sartorial cray craft beer
+              whatever street art fap.
+            </p>
+            <button class="user_registered-login" id="login-button">
+                Sign Up
+              </button>
+           
+          </div>
+        </div>
+
+        <div class="user_options-forms" id="user_options-forms">
+          <div class="user_forms-login" style="position: absolute; top: 0%;">
+            <h2 class="forms_title">Sign up</h2>
+            <form class="forms_form" action="/register" method="post">
+              <fieldset class="forms_fieldset">
+                <div class="forms_field">
+                  <input
+                    autocomplete="off"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    id="username"
+                    class="forms_field-input"
+                    required
+                  />
+                  <label for="username" id="username-label"></label>
+                </div>
+                <div class="forms_field">
+                  <input
+                    autocomplete="off"
+                    type="text"
+                    name="fullname"
+                    placeholder="FullName"
+                    class="forms_field-input"
+                    required
+                  />
+                </div>
+                <div class="forms_field">
+                  <input
+                    autocomplete="off"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    class="forms_field-input"
+                    id="email"
+                    required
+                  />
+                  <label for="email" id="email-label"></label>
+                </div>
+                <div
+                  class="forms_field"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                  "
+                >
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    id="regpassword"
+                    class="forms_field-input"
+                    required
+                    autofocus
+                    aria-hidden="true"
+                  />
+                  <i
+                    class="far fa-eye"
+                    id="regtogglePassword"
+                    style="
+                      cursor: pointer;
+                      font-size: 18px;
+                      width: 40px;
+                      height: 40px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  ></i>
+                </div>
+              </fieldset>
+              <div class="forms_buttons">
+                <input
+                  autocomplete="off"
+                  type="submit"
+                  value="Sign up"
+                  class="forms_buttons-action"
+                  id="registeration-button"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="user_forms-signup">
+            <h2 class="forms_title" style="margin-top: -1rem">login</h2>
+            <form class="forms_form" action="/login" method="post">
+              <fieldset class="forms_fieldset">
+                <div class="forms_field">
+                  <input
+                    autocomplete="off"
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    class="forms_field-input"
+                    required
+                    autofocus
+                  />
+                </div>
+                <div
+                  class="forms_field"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                  "
+                >
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    id="password"
+                    class="forms_field-input"
+                    required
+                    autofocus
+                    aria-hidden="true"
+                  />
+                  <i
+                    class="far fa-eye"
+                    id="togglePassword"
+                    style="
+                      cursor: pointer;
+                      font-size: 18px;
+                      width: 40px;
+                      height: 40px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  ></i>
+                </div>
+              </fieldset>
+              <div class="forms_buttons">
+                <a href="/forget"
+                  ><button type="button" class="forms_buttons-forgot">
+                    Forgot password?
+                  </button></a
+                >
+                <input
+                  autocomplete="off"
+                  type="submit"
+                  value="Log In"
+                  class="forms_buttons-action"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+
+document.querySelector("#username").addEventListener("input" , function () {
+      var username = document.querySelector("#username").value.trim();
+      axios.get(`/check/${username}`)
+        .then(function (data) {
+          if (data.data.user) {
+            console.log("user found");
+            document.querySelector("#username").style.border = '2px red solid';
+            document.querySelector("#registeration-button").disabled = true;
+            document.querySelector("#registeration-button").style.backgroundColor = "#ecc0bf";
+            document.querySelector("#registeration-button").style.cursor = "no-drop";
+            document.querySelector("#username-label").textContent = "this username allready exits !!!!";
+            document.querySelector("#username-label").style.color = "red";
+            
+
+
+          }
+          else{
+            document.querySelector("#username").style.border = 'initial';
+            document.querySelector("#registeration-button").disabled = false;
+            document.querySelector("#registeration-button").style.backgroundColor = "#e8716d";
+            document.querySelector("#registeration-button").style.cursor = "pointer";
+            document.querySelector("#username-label").textContent = "";
+            // document.querySelector("#username-label").style.color = "red";
+
+          }
+          console.log("user not found")
+        })
+
+    })
+
+
+
+    document.querySelector("#email").addEventListener("input" , function () {
+      var email = document.querySelector("#email").value.trim();
+      console.log(email)
+      axios.get(`/checkmail/${email}`)
+        .then(function (data) {
+          if (data.data.user) {
+            console.log("user found");
+            document.querySelector("#email").style.border = '2px red solid';
+            document.querySelector("#registeration-button").disabled = true;
+            document.querySelector("#registeration-button").style.backgroundColor = "#ecc0bf";
+            document.querySelector("#registeration-button").style.cursor = "no-drop";
+            document.querySelector("#email-label").textContent = "this email already exits !!!!";
+            document.querySelector("#email-label").style.color = "red";
+            
+
+
+          }
+          else{
+            document.querySelector("#email").style.border = 'initial';
+            document.querySelector("#registeration-button").disabled = false;
+            document.querySelector("#registeration-button").style.backgroundColor = "#e8716d";
+            document.querySelector("#registeration-button").style.cursor = "pointer";
+            document.querySelector("#email-label").textContent = "";
+
+
+          }
+          console.log("user not found")
+        })
+
+    })
+
+
+      const togglePassword = document.querySelector("#togglePassword");
+      const regtogglePassword = document.querySelector("#regtogglePassword");
+
+      const password = document.querySelector("#password");
+      const regpassword = document.querySelector("#regpassword");
+
+      togglePassword.addEventListener("click", function (e) {
+        // toggle the type attribute
+        const type =
+          password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        // toggle the eye slash icon
+        this.classList.toggle("fa-eye-slash");
+      });
+      regtogglePassword.addEventListener("click", function (e) {
+        // toggle the type attribute
+        const type =
+          regpassword.getAttribute("type") === "password" ? "text" : "password";
+        regpassword.setAttribute("type", type);
+        // toggle the eye slash icon
+        this.classList.toggle("fa-eye-slash");
+      });
+    </script>
+  </body>
+  <script src="/javascripts/login.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
